@@ -1,0 +1,26 @@
+# Loop
+- 
+    name: Create users 
+    hosts: localhost
+    tasks: 
+        - user: name='{{item}}' state present.
+          loop: 
+            - joe
+            - george
+            - ravi
+            - mani 
+            - kiran
+            - jasmin
+
+# If a user has eg an ide you can make use of dictionaries.
+- name: joe
+  uid: 1010 
+- name: george 
+  uid: 1011
+
+# It would look like the following.
+- var:
+    item:
+        name: joe
+        uid: 1010
+    user: name= "{{ item.name }}" state=present uid="{{ item.uid }}"

@@ -1,0 +1,11 @@
+# Download roles to /etc/ansible/roles/
+ansible-galaxy install geerlingguy.mysql
+
+# Roles
+- 
+    name: Install and Cofigure MySQL
+    hosts: db-server
+        - roles: geerlingguy.mysql
+          become: yes
+          vars:
+            mysql_user_name: db-user
