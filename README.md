@@ -3,6 +3,8 @@ Ansible is automation language created for continuous integration and continues 
 
 Ansible control machine can only be linux which means that the "controller machine" should be linux. <br>
 
+
+<br>
 <h2>Playbooks</h2>
 - Is ansible's orcestration language. <br>
 Playbooks are Ansible's configuration, deploymentm and orchestration language created as .yml files. 
@@ -28,17 +30,23 @@ Syntax
 "ansible target1 -m 'pint'"
 
 <h2>Modules</h2>
-- System
-- Commands
-- files 
-- Database 
-- Cloud 
-- Windows 
-- More..
+We have the following modules which all have sub components. <br>
+- System <br>
+- Commands<br>
+- files <br>
+- Database <br> 
+- Cloud <br>
+- Windows <br>
+- More.. <br>
 
 <br>
 <h2>Variables</h2>
 Variables stores ifnormation that varies with each host. <br>
+- Use variables in the following way: {{variable}}. <br> 
+- Variables are stored in the inventory file. <br>
+- If variable stands alone we use single quotes around: '{{inter_ip_rande}}' <br>
+- If variable is part of a longer longer line we do not use quotes: something/{{inter_ip_range}}/something <br><br>
+
 Example: <br>
 fasdfasdf
 
@@ -54,14 +62,11 @@ We can use with directive to loop through items: <br>
 - with_url <br>
 - with_mongodb <br>
 
-- Use variables in the following way: {{variable}}. <br> 
-- Variables are stored in the inventory file. <br>
-- If variable stands alone we use single quotes around: '{{inter_ip_rande}}' <br>
-- If variable is part of a longer longer line we do not use quotes: something/{{inter_ip_range}}/something <br>
 
 <br>
 <h2>Conditionals</h2>
 - An example of the use of a condition is if we want create a playbook which support two different servers. 
+
 
 <br>
 <h2>Roles</h2>
@@ -70,6 +75,7 @@ Roles are specified in the "roles_path" variable which is stored in the ansible 
 Get list of roles <br>
 <i>ansible-galaxy list</i><br>
 <br>
+
 
 <br>
 <h2>Inventory file</h2>
