@@ -11,11 +11,11 @@ Playbooks are Ansible's configuration, deploymentm and orchestration language cr
 - you can ex run series of commands on different servers or you can create complex playbooks where you configure and setup whole servers.
 - All playbooks are created in YAML.
 <h3>Task</h3>
-- A single action on a host 
-- Exeucte a command 
-- run script 
-- isntall a package 
-- shutdown/restsrt.
+- A single action on a host <br>
+- Exeucte a command <br>
+- run script <br>
+- isntall a package <br>
+- shutdown/restsrt. <br>
 
 <h3>How to run playbooks</h3>
 Execute Ansible Playbook
