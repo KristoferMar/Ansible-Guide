@@ -47,8 +47,6 @@ Variables stores ifnormation that varies with each host. <br>
 - If variable stands alone we use single quotes around: '{{inter_ip_rande}}' <br>
 - If variable is part of a longer longer line we do not use quotes: something/{{inter_ip_range}}/something <br><br>
 
-Example: <br>
-fasdfasdf
 
 <br>
 <h2>Loops</h2>
@@ -62,10 +60,16 @@ We can use with directive to loop through items: <br>
 - with_url <br>
 - with_mongodb <br>
 
+Example: <br>
+<a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Loop.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Loop.yml</a>
+
 
 <br>
 <h2>Conditionals</h2>
-- An example of the use of a condition is if we want create a playbook which support two different servers. 
+- An example of the use of a condition is if we want create a playbook which support two different servers. <br>
+
+Example: <br>
+<a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Condition.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Condition.yml</a>
 
 
 <br>
@@ -94,6 +98,6 @@ ansible_ssh_pass
 - stores the password used, you should maybe find a way to not store this in pain text.
 
 
-<h2>YAML<h2>
-- Ansible playbooks are written and configured in YAML.
+<h2>YAML</h2>
+- Ansible playbooks are written and configured in YAML. <br>
 - We can store data in "Dictionaries", "Lists" or "List of Dictionaries". We also compare them to configre data in ansible playbooks. 
