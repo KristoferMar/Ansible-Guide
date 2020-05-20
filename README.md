@@ -51,8 +51,8 @@ Variables stores ifnormation that varies with each host. <br>
 <br>
 <h2>Loops</h2>
 Loops iterate multiple eg a list and gives us opertunity to execute logic foeach element in a eg a list. <br>
-Example: <br>
-fsdfsdfsdf 
+
+- All memebers of a list are lines beginning at the same indentaion level starting with a "-" ( a dash and a space). <br>
 
 We can use with directive to loop through items: <br>
 - with_item <br>
@@ -97,6 +97,13 @@ ansible_user
 ansible_ssh_pass
 - stores the password used, you should maybe find a way to not store this in pain text.
 
+<br>
+<h2>Executions</h2>
+
+<h3>Local executions</h3>
+- "local_action" is an alternative way to doing delegate_to: localhost. <br>
+Executes command localy <br>
+<i>local_action: command ping -c 1 {{ inventory_hostname }}</i>
 
 <h2>YAML</h2>
 - Ansible playbooks are written and configured in YAML. <br>
