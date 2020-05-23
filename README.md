@@ -107,4 +107,8 @@ Executes command localy <br>
 
 <h2>YAML</h2>
 - Ansible playbooks are written and configured in YAML. <br>
-- We can store data in "Dictionaries", "Lists" or "List of Dictionaries". We also compare them to configre data in ansible playbooks. 
+- We can store data in "Dictionaries", "Lists" or "List of Dictionaries". <br> We also compare them to configre data in ansible playbooks. <br>
+
+<h2>Experienced issues</h2>
+<h3>Ansible job hangs indefinitely</h3>
+Whenever an asible job hangs indefinitly then you should try deleating the ~./ansible folder from your home directory. It will be recreated when an ansible playbook is run, and hopefully fixes the issue. <br>
