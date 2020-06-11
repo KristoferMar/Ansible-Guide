@@ -80,6 +80,13 @@ Get list of roles <br>
 <i>ansible-galaxy list</i><br>
 <br>
 
+<br>
+<h2 class="subsubTitleSection">File and Directories</h2>
+
+<h3>Directory manipulation</h3>
+<a>link here</a>
+
+
 
 <br>
 <h2>Inventory file</h2>

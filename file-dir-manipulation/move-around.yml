@@ -1,0 +1,11 @@
+- hosts: "hostname"
+  become: true
+  tasks:
+  # Copies directory or file from one place on server and places elsewhere. 
+  # If already exist it will add in to already extisting destination.
+  - name: Copy /staging/.../data to /data 
+    copy:
+      src: /staging/inttest/sftp/data/data
+      dest: /data2
+      remote_src: yes # Indictes file is moved from remote server and to another place on remote server
+      # follow: yes
