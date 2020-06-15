@@ -1,0 +1,49 @@
+---
+# This module shows us how to use the command module.
+# Run shell commands on remote hosts
+- hosts: "*"
+  tasks:
+  - name: Ensure file exists 
+    command: touch /tmp/test_file
+
+# THIS WON't WORK - debug 
+# A way to debug out shell commands. 
+# We cant use shell operators in the command module
+  - name: Ensure file exists debug
+    command: echo "hello, World!" > /tmp/test_file2
+    register: command_output
+  - debug: var=command_output
+
+
+# This will work
+# More secure and more predictable than shell
+  - name: Ensure file exists debug
+    shell: echo "hello, World!" > /tmp/test_file2
+    register: command_output
+
+  - debug: var=command_output
+
+
+  - name: ensure file exists using args
+    shell: touch test_file3
+    args:                                           # 
+      chdir: /tmp/test_dir                          # Stands for change-directory
+
+
+# You can set environment variables directly in the command module.
+  - name: ensure file exists using args
+    command: touch $TARGET_DIR
+    args:
+      chdir: $TARGET_DIR
+    environment: 
+      TARGET_DIR: /tmp
+      FILENAME: test_file4
+
+
+# Multiple commands with the command module.
+  - name: Run multipe commands
+    command: "{{ item }}"
+    loop:
+      - touch /tmp/test_file
+      - mkdir /tmp/test_dir
+      - mv /tmp/test_file /tmp/test_dir

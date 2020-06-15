@@ -1,0 +1,40 @@
+---
+# This module shows us how to use the template module.
+# Templates directory is where ansible searches for templates by default.
+# ".j2" is an extension for jinja2 file which ansible uses for it's templates.
+- hosts: "*"
+  vars: 
+    env: staging
+    my_app_version: v1.1
+  tasks:
+  - name: template file onto remote hosts
+    template:
+      src: my_app.conf.j2     # remember '.j2'
+      dest: /etc/my_app.conf  # '.j2' is not needed becuase it's our final destionation. 
+    become: true
+
+
+  - name: template file onto remote hosts with restrictions.
+    template:
+      src: my_app.conf.j2     # remember '.j2'
+      dest: /etc/my_app.conf  # '.j2' is not needed becuase it's our final destionation.
+      owner: root 
+      group: root
+      # Only root can read and write with '0600'.
+      mode: 0600  # read for groups and others will be removed.
+    become: true
+
+
+    # Template multiple files to host.
+  - name: template file onto remote hosts with restrictions.
+    template:
+      src: "{{item}}.j2"     # remember '.j2'
+      dest: /etc/{{item}}    # '.j2' is not needed becuase it's our final destionation.
+      owner: root 
+      group: root
+      # Only root can read and write with '0600'.
+      mode: 0600  # read for groups and others will be removed.
+    become: true
+    loop: 
+      - my_app.conf
+      - my_app-release

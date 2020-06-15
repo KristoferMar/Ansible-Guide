@@ -9,3 +9,11 @@
       dest: /data2
       remote_src: yes # Indictes file is moved from remote server and to another place on remote server
       # follow: yes
+
+  # Move a given file from one place to another without copy
+  - name: stat foo
+    stat: path=/path/to/foo
+    register: foo_stat
+  - name: Move foo to bar
+    command: mv /path/to/foo /path/to/bar
+    when: foo_stat.stat.exists

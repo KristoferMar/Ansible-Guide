@@ -1,0 +1,26 @@
+---
+# This module shows us how to use the fetch module.
+- hosts: "*"
+  tasks:
+  - name: Download file from remote to localhost
+    fetch:
+      src: "/home/file" # Destination on server
+      dest: fetched     # Creates direcroty in ansible project and puts files there
+
+  # flat: true creates fetched as a flat file and NOT directory 
+  # if we set "/" infront of fetched we will get directorie again.
+  - name: Download file from remote to localhost
+    fetch:
+      src: "/home/file" # Destination on server
+      dest: fetched     # Creates direcroty in ansible project and puts files there
+      flat: true
+  
+  # It's not possible to fetch a directorie recursivly
+  - name: Download multiple files from remote to localhost
+  fetch:
+    src: "/home/{{ansible_user}}/{{ item }}"   # Destination on server
+    dest: fetched/{{ inventory_hostname }}/    # Creates direcroty in ansible project and puts files there
+    flat: true
+  loop:
+    - test_file1
+    - test_file2
