@@ -33,9 +33,9 @@ Syntax
 We have the following modules which all have sub components. <br>
 - System <br>
 Commands<br>
-<a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/command.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/command.yml</a><br>
+<a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/command.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/command.yml</a><br><br>
 Template <br>
-<a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/template.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/template.yml</a><br>
+<a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/template.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/template.yml</a><br><br>
 - files <br>
 - Database <br> 
 - Cloud <br>
