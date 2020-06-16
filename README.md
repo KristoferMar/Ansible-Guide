@@ -37,8 +37,8 @@ We have the following modules which all have sub components. <br>
 - Database <br> 
 - Cloud <br>
 - Windows <br>
-- Fetch <br>
-https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/fetch.yml <br>
+Fetch <br>
+<a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/fetch.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/fetch.yml</a><br>
 - More.. <br>
 
 <br>
