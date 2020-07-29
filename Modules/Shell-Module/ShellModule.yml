@@ -1,0 +1,51 @@
+  
+---
+# This playbook takes us though the shell module.
+- name: sample book 
+  hosts: "*"
+  remote_user: kris
+  tasks:
+    - name: Run command with shell Module
+      shell: echo "Hello, shell!" > /tmp/shell_output
+
+    - name: Run command with command Module
+      command: echo "hello, command!" > /tmp/command_output
+
+  # Command module will escape the whole shell command an parse it as a string which is executed by echo
+  # It does not make use of the shell operators in the same way the shell module does
+  # Command module is more secure and predictible than the shell module
+  # Best practice is to use the command module unless shell module is explicitly required for your task. 
+
+---
+# This playbook takes us though the shell module.
+# Simple playbook using arguments, environment variables and a loop.
+- name: sample book 
+  hosts: "*"
+  remote_user: kris
+  tasks:     
+    - name: use args, environment and loop with shell
+      shell: echo "Hello world!" > $TARGET
+      args:
+        chdir: /somedir
+      environment:
+        TARGET: "{{ item }}"
+      loop:
+        - file1
+        - file2
+  
+  # For Windows-users you should use the win_shell module instead of the shell module.
+
+---
+# Shell injection 
+# It's a very good idea to be fully aware of what variables get parsed into your shell command 
+# And make sure to sanatize the variables if needed.
+
+# You could experience errors from simple operators like a somicolon which could get tricky to find
+# in case your playbooks starts having as not expected due to shell injection. 
+- name: sample book 
+  hosts: "*"
+  remote_user: kris
+  tasks:
+    - name: Run task shell injection
+      shell: "echo {{ message | quote }} > /somedir/test_file"
+      

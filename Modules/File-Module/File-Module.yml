@@ -1,0 +1,75 @@
+---
+# This playbook takes us though the file module.
+- name: The Shell Module Playbook
+  hosts: Ubuntu-Machine1
+  remote_user: kris
+  become: yes
+  tasks:
+  ## Create using the file module
+    - name: Create directory
+      file: 
+        path: /somedir/CreatedDirectory
+        state: directory
+    
+    - name: Create file
+      file: 
+        path: /somedir/File
+        state: touch
+    
+    - name: Created file inside directory
+      file: 
+        path: /somedir/CreatedDirectory/file.txt
+        state: touch
+
+# Change permission 
+  # 01777 = All access rights
+  # 0644 = User Read/Write, Group can read, Other can read
+  # http://permissions-calculator.org/decode/0644/
+  # octal numbers
+  # Octal notation is a numerical system for modifying the permissions on Linux, Mac and other Unix like file systems.
+    - name: Give All permissions to an existing file
+      file:
+        path: /somedir/Test
+        owner: root
+        group: root
+        mode: '1777'
+        recurse: yes  #Make it clear that we can assign permissions recursivly
+
+  # States
+  # ABSENT, directories will recursively be deleted and files or symlinks will be unlined
+    # - name: Create a symbolic link
+    #   file:
+    #     path: /somedir/TestFile.txt
+    #     state: absent
+
+  # Directory 
+  # All intermediate subdirectories will be created if they do not exist
+
+  # File
+  # ensures a path is a file, but will throw an error if the path does not exist or if the path is not a file
+    - name: Ensure the path is a file 
+      file:
+        path: /somedir/TestFile.txt
+        state: file
+
+  # Hard 
+  # hard link is a mirror copy of the original file.
+  # If you delete the original file, the soft link has no value, because it points to a non-existent file. But in the case of hard link, it is entirely opposite. Even if you delete the original file, the hard link will still has the data of the original file. Because hard link acts as a mirror copy of the original file.
+    - name: Create a symbolic link
+      file:
+        src: /somedir/TestFile.txt
+        dest: /somedir/hardlink.symlink
+        state: hard
+        owner: kris
+
+  # link / softlink = Creates a symbolic link to a file. 
+  # It's like making a sortcut to file with icon on desktop
+    - name: Create a symbolic link
+      file:
+        src: /somedir/TestFile.txt
+        dest: /symlink
+        owner: kris
+        state: link
+
+  # Touch
+  # Will create an empty file if a path does not exist and will not throw an error if the path is a directory or symlink

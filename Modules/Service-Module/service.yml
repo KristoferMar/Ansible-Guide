@@ -1,0 +1,64 @@
+---
+# This playbook takes us though the file module.
+- name: The Shell Module Playbook
+  hosts: "*"
+  remote_user: kris
+  tasks: 
+
+    # Check all services 
+    service --status--all
+
+    [?] means the service status isn't known
+    [+] means the service is running
+    [-] means the service is not running
+
+    # Check a specific service
+     service apache2 status
+     systemctl status apache2
+
+    # DIFFERENCE BETWEEN service AND systemctl
+     service is an "high-level" command used for starting and stopping services
+     service is adaquate for basic service management, while directly calling systemctl give greater control options
+
+      # Starts a service
+    - name: Start a service, if it's not started
+      name: httpd
+      state: started
+
+      # Stops a service
+    - name: Stop a service, if it's started
+      name: httpd
+      state: stopped
+
+      # Restarts a service 
+      # restart = Stop + Start
+    - name: Restart a service, in all cases
+      name: httpd
+      state: restarted
+
+      # Reloads a service 
+      # Remain running + re-read configuration files
+    - name: Reload a service, in all cases
+      name: httpd
+      state: reloaded
+
+      # Verify accessablity to the serivce.
+    - name: Enable service httpd, and not touch the state
+      name: httpd
+      enabled: yes
+
+
+      # Start a given service based on a specific process
+    - name: Start service foo, based on running process /usr/bin/foo
+      service:
+        name: foo
+        pattern: /usr/bin/foo
+        state: started
+
+      # For if you want to restart network service
+    - name: Restart network service for interface eth0
+      service:
+        name: network
+        state: restarted
+        args: eth0
+      
