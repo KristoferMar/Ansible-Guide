@@ -33,18 +33,27 @@
         mode: u=rw,g=r,o=r
       become: true
     
-  # Template multiple files.
-    - name: Template multiple files.
-        template:
-          src: "{{item}}.j2"
-          dest: "/etc/file.conf"
-          owner: kris
-          group: kris
-          mode: u=rw,g=r,o=r
-        become: true
-        loop:
-          - file1.conf
-          - my_app-release
+    
+---
+# This playbook takes us though the template module.
+- name: The Template Module Playbook
+  hosts: "*"
+  remote_user: kris
+  vars:
+    changeable_variable: "Variable that could store configuration for an environment"   # Configuration variable
+  tasks:
+    - name: Template multiple files to remote hosts
+      template:
+        src: "{{item}}.j2"
+        dest: "/somedir/{{item}}"
+        owner: kris
+        group: kris
+        mode: 0666
+      become: true
+      loop:
+        - configuration.conf
+        - test.php
+        - testfile.txt
 
 
 ---
