@@ -1,0 +1,62 @@
+---
+# This playbook takes us though the template module.
+
+- name: The Template Module Playbook
+  hosts: "*"
+   vars: 
+    changeable_variable: "Variable that could store configuration for an environment"   # Configuration variable
+    ansibleManaged: "Ansible Configuration variable: \n {{ ansible_managed }} \n"       # Contains string which can describe name, host, modification time of template                                    
+    templateHost: "Node name of the template's machine: \n {{ template_host }} \n"      # Node name of the templates machine
+    templateUid: "Numeric user ID of the owner: \n {{ template_uid }} \n"               # Numeric user id of the owner
+    templatePath: "Path of the template: \n {{ template_path }} \n"                     # Path of the template
+    templateFullpath: "Full Path of the template: \n {{ template_fullpath }} \n"        # Absolout path
+    templateDestpath: "Template path on remote system: \n {{ template_destpath }} \n"   # Path of the template on remote system
+    templateRun_date: "Date of templater rendering: \n {{ template_run_date }} \n"      # Date of which the template was rendered
+  tasks:
+  # How to template a file - Basics
+    - name: Template a file to /etc/files.conf
+      template:
+      # .j2 extension is the extension for the jinja 2 templating language which ansible uses for it's templates
+      #  we do not add the .j2 extension to the destinaion of the file.
+        src: configuration.conf.j2
+        dest: /somedir/configuration.conf
+      become: true
+    
+  # Template a file with permission
+    - name: Template a file, using symbolic modes (equivalent to 0644)
+      template:
+        src: configuration.conf.j2
+        dest: /somedir/configuration2.conf
+        owner: kris
+        group: kris
+        # Symbolic or octal
+        mode: u=rw,g=r,o=r
+      become: true
+    
+  # Template multiple files.
+    - name: Template multiple files.
+        template:
+          src: "{{item}}.j2"
+          dest: "/etc/file.conf"
+          owner: kris
+          group: kris
+          mode: u=rw,g=r,o=r
+        become: true
+        loop:
+          - file1.conf
+          - my_app-release
+
+
+---
+# This playbook takes us though the template module.
+- name: The Template Module Playbook
+  hosts: "*"
+  remote_user: kris
+  vars:
+    changeable_variable: "Variable that could store configuration for an environment"   # Configuration variable
+  tasks:
+    - name: Template a configuration file
+      template:
+        src: configuration.conf.j2
+        dest: /somedir/configuration.conf
+      become: true
