@@ -32,8 +32,23 @@
         # Symbolic or octal
         mode: u=rw,g=r,o=r
       become: true
-    
-    
+
+
+---
+# This playbook takes us though the template module.
+- name: The Template Module Playbook
+  hosts: "*"
+  remote_user: kris
+  vars:
+    changeable_variable: "Variable that could store configuration for an environment"   # Configuration variable
+  tasks:
+    - name: Template a configuration file
+      template:
+        src: configuration.conf.j2
+        dest: /somedir/configuration.conf
+      become: true
+
+      
 ---
 # This playbook takes us though the template module.
 - name: The Template Module Playbook
@@ -57,15 +72,32 @@
 
 
 ---
-# This playbook takes us though the template module.
+# Advanced look at the template module - Additions can be see below
+# 1. Backup: yes
+# 2. Loop modification
+# 3. How variables read from loop
+# 4. Debug variables
 - name: The Template Module Playbook
   hosts: "*"
   remote_user: kris
   vars:
     changeable_variable: "Variable that could store configuration for an environment"   # Configuration variable
   tasks:
-    - name: Template a configuration file
+    - name: Template multiple files to remote hosts
       template:
-        src: configuration.conf.j2
-        dest: /somedir/configuration.conf
+        src: "{{item.file}}.j2"
+        dest: "/somedir/{{item.file}}"
+        owner: "{{ item.user }}"
+        group: kris
+        mode: 0666
+        backup: yes                     # Backup with timestamp.
       become: true
+      register: result
+      loop:
+        - { file: "configuration.conf", user: "root" }
+        - { file: "test.php", user: "root"}
+        - { file: "testfile.txt", user: "root"}
+    
+    - name: Debug variable
+      debug:
+        var: result
