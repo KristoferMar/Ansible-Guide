@@ -1,0 +1,42 @@
+# Difference between copy and templating module
+
+# Copy module takes a file from host, "as-is"
+# Template module takes a file from host (potentially changes variables based on Jinj2 filtering) and copies file to remote destination.
+# https://stackoverflow.com/questions/37675262/what-is-the-difference-between-ansible-template-module-and-copy-module
+
+# Copy file from localhost to remote host with autorization.
+---
+  hosts: "*"
+  remote_user: kris
+  tasks:
+    - name: Copy a file from localhost to remotehost
+      copy:
+        src: ./files/file.txt
+        dest: /somedir/thedirectory/
+        owner: kris
+        group: kris
+        mode: 0755
+      become: true
+  
+
+---
+  hosts: "*"
+  remote_user: kris
+  tasks:
+    - name: Copy a file from localhost to remotehost
+      copy:
+        src: ./files/file.txt
+        dest: /somedir/thedirectory/
+        owner: kris
+        group: kris
+        mode: 0755
+        backup: true
+      become: true
+
+---
+  hosts: "*"
+  remote_user: kris
+  tasks:
+    - name: Copy file internally on remote host
+      src: /somedir/fileToMove.txt
+      dest: /someotherdir/fileToMove.txt
