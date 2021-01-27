@@ -25,7 +25,7 @@ It's possible to combine the executions together: <br><br>
 Execute Ansible Playbook<br>
 <i>ansible-playbook playbook.yml</i><br>
 Execute Playbook with inventory <br>
-<i>ansible-playbook -i LocatedInventoryFile.yml playbook.yml</i>
+<i>ansible-playbook -i LocatedInventoryFile.yml playbook.yml</i><br>
 
 <br>
 <b>Example not using playbooks (wrong way to do it)</b>
