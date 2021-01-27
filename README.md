@@ -21,10 +21,11 @@ Playbooks are Ansible's configuration, deploymentm and orchestration language cr
 
 <br>
 <h3>How to run playbooks</h3>
+It's possible to combine the executions together: <br><br>
 Execute Ansible Playbook<br>
 <i>ansible-playbook playbook.yml</i><br>
-Syntax <br>
-<i>ansible-playbook 'playbook file name'</i><br>
+Execute Playbook with inventory <br>
+<i>ansible-playbook -i LocatedInventoryFile.yml playbook.yml</i>
 
 <br>
 <b>Example not using playbooks (wrong way to do it)</b>
