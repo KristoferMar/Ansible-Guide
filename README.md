@@ -7,9 +7,11 @@ Ansible control machine can only be linux which means that the "controller machi
 <br>
 <h2>Playbooks</h2>
 - Is ansible's orcestration language. <br>
-Playbooks are Ansible's configuration, deploymentm and orchestration language created as .yml files. 
-- you can ex run series of commands on different servers or you can create complex playbooks where you configure and setup whole servers.
-- All playbooks are created in YAML.
+Playbooks are Ansible's configuration, deploymentm and orchestration language created as .yml files.  <br>
+- you can ex run series of commands on different servers or you can create complex playbooks where you configure and setup whole servers.<br>
+- All playbooks are created in YAML. <br>
+
+<br>
 <h3>Task</h3>
 - A single action on a host <br>
 - Exeucte a command <br>
@@ -17,18 +19,21 @@ Playbooks are Ansible's configuration, deploymentm and orchestration language cr
 - isntall a package <br>
 - shutdown/restsrt. <br>
 
+<br>
 <h3>How to run playbooks</h3>
-Execute Ansible Playbook
-<i>ansible-playbook playbook.yml</i>
-Syntax
-<i>ansible-playbook 'playbook file name'</i>
+Execute Ansible Playbook<br>
+<i>ansible-playbook playbook.yml</i><br>
+Syntax <br>
+<i>ansible-playbook 'playbook file name'</i><br>
 
+<br>
 <b>Example not using playbooks (wrong way to do it)</b>
-"ansible 'hosts' -a 'command'"
-"ansible all -a '/sbin/reboot'"
-"ansible 'hosts' -m 'module'"
-"ansible target1 -m 'pint'"
+"ansible 'hosts' -a 'command'" <br>
+"ansible all -a '/sbin/reboot'" <br>
+"ansible 'hosts' -m 'module'" <br>
+"ansible target1 -m 'pint'" <br>
 
+<br>
 <h2>Modules</h2>
 We have the following modules which all have sub components. <br>
 - System <br>
