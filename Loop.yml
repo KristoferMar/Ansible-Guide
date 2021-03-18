@@ -24,3 +24,15 @@
         name: joe
         uid: 1010
     user: name= "{{ item.name }}" state=present uid="{{ item.uid }}"
+    
+    
+    
+# Loop with files 
+  - name: Create needed folders and files on SFTP server.
+    copy:
+      src: ../files/batchJobs/praksys/{{item}}
+      dest: /data/PraksysReplicaSftpUser/data/IN/{{item}}
+      mode: 777
+    loop:
+      - file1
+      - file2
