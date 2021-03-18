@@ -30,8 +30,8 @@
 # Loop with files 
   - name: Create needed folders and files on SFTP server.
     copy:
-      src: ../files/batchJobs/praksys/{{item}}
-      dest: /data/PraksysReplicaSftpUser/data/IN/{{item}}
+      src: ../files/batchJobs/{{item}}
+      dest: /data/somebatchjobpath/{{item}}
       mode: 777
     loop:
       - file1
