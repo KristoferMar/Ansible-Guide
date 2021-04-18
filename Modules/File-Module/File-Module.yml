@@ -5,7 +5,7 @@
   remote_user: kris
   become: yes
   tasks:
-  ## Create using the file module
+  ## Create using the file module - If the given endpoint already exist this function will just verify and report back.
     - name: Create directory
       file: 
         path: /somedir/CreatedDirectory
