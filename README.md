@@ -42,6 +42,8 @@ Commands<br>
 <a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/command.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/command.yml</a><br><br>
 Template <br>
 <a href="https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/template.yml" target="_blank">https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/template.yml</a><br><br>
+<h3>Copy module</h3>
+https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/Copy-Module/copy_module.yml <br>
 <h3>File module</h3>
 https://github.com/KristoferMar/Ansible-Guide/blob/master/Modules/File-Module/File-Module.yml <br>
 - Database <br> 
