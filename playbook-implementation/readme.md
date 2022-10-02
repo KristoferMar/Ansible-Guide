@@ -1,0 +1,15 @@
+# Playbook implementation
+
+## Ansible inventory
+It's a file that defines hosts and groups of hosts upon which commands, modules, and tasks in a playbook opreate. 
+
+The variable "ANSIBLE_CONFIG" variable controls location of the cfg file, you can change it with.
+<pre>
+export ANSIBLE_CONFIG=/ANSIBLE/ansible.cfg
+</pre>
+
+## Ansible Configuration
+You can list the precise current configuration in the following way
+<pre>
+ansible-config  dump
+</pre>
