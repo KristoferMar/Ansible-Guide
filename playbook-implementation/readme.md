@@ -13,3 +13,14 @@ You can list the precise current configuration in the following way
 <pre>
 ansible-config  dump
 </pre>
+
+## Running ad Hoc Commands
+Example
+<pre>
+ansible localhost -m command -a 'id'
+</pre>
+
+## Check syntax of playbook
+<pre>
+ansible-playbook about.yml --syntax-check
+</pre>
