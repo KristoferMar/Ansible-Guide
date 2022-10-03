@@ -1,5 +1,29 @@
 # Playbook implementation
 
+## Customize vim to prettify yaml 
+Create a "$HOME/.vimrc" to personalize vim for your user. In that file you can putit.
+<pre>
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
+autocmd FileType yaml colo desert
+</pre>
+
+## Utilize the Ansible docs for all modules
+There are examples for almost all modules - Just do the following
+<pre>
+ansible-doc service
+
+/EXAMPES (press enter)
+
+... The example appear ...
+</pre> 
+
+
+## Ping all hosts available
+<pre>
+ansible all -m ping
+</pre>
+
+
 ## Ansible inventory
 It's a file that defines hosts and groups of hosts upon which commands, modules, and tasks in a playbook opreate. 
 
