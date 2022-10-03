@@ -1,11 +1,10 @@
 # Introduction to Ansible
 
+##  Installing Ansible
 https://github.com/KristoferMar/Ansible-Guide/tree/master/installing-ansible
 
-##  Installing Ansible
-
 ## Implementing an Ansible Playbook
-
+https://github.com/KristoferMar/Ansible-Guide/tree/master/playbook-implementation
 
 
 <h1>Ansible-Guide</h1>
