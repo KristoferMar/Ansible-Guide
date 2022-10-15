@@ -23,3 +23,7 @@ db2.example.com
 
 [development]
 192.0.2.42
+
+# With from-to syntax [START:END]
+[usa]
+washington[1:2].example.com
