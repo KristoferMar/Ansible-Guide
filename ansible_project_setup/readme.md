@@ -30,4 +30,5 @@ Check and verify all hosts
 ## First playbook
 Playbooks are used to run multiple complex tasks against a set of hosts in an easily repeatable maner.
 
-Example
+Playbook example
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_project_setup/playbook.yml
