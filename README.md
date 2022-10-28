@@ -1,5 +1,7 @@
 # Introduction to Ansible
 
+## Vim configurations 
+
 ##  Installing Ansible
 https://github.com/KristoferMar/Ansible-Guide/tree/master/installing-ansible
 
@@ -8,6 +10,12 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_project_setup
 
 ## Implementing an Ansible Playbook
 https://github.com/KristoferMar/Ansible-Guide/tree/master/playbook-implementation
+
+## Managing variables and facts
+- Variables
+- Facts
+- Secrets
+
 
 
 <h1>Ansible-Guide</h1>
