@@ -1,7 +1,7 @@
 # Introduction to Ansible
 
 ## Vim configurations 
-
+https://github.com/KristoferMar/Ansible-Guide/tree/master/vim_config
 ##  Installing Ansible
 https://github.com/KristoferMar/Ansible-Guide/tree/master/installing-ansible
 
@@ -16,7 +16,24 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/playbook-implementatio
 - Facts
 - Secrets
 
+https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_variables_and_facts
 
+## Implementing Task Control
+
+## Deploying Files to Managed Hosts
+
+## Managing Complex Plays and Playbooks
+
+## Simplyfying playbooks with roles
+
+## Troubleshooting Ansible
+
+## Automating Linux Administration Tasks
+
+
+
+<br>
+<br>
 
 <h1>Ansible-Guide</h1>
 Ansible is automation language created for continuous integration and continues deployment. <br>
