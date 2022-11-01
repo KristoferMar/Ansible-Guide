@@ -19,6 +19,7 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/playbook-implementatio
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_variables_and_facts
 
 ## Implementing Task Control
+https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_task_control
 
 ## Deploying Files to Managed Hosts
 
