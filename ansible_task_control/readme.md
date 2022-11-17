@@ -18,6 +18,7 @@ Think of handlers like this.. If the task has to be run then we run the assosiat
 - Handlers are defined on the same level as tasks in the playbook
 
 ### Example
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_task_control/handlers.yml
 
 ## Handling Task Failures
 We use the keywords block, rescue and always to handle a failing task
@@ -25,3 +26,4 @@ We use the keywords block, rescue and always to handle a failing task
 - the keyword "failed_when: web_package == 'httpd'" fails the task on a condition 
 
 ### Example
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_task_control/handling_task_failure.yml
