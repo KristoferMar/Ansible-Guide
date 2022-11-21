@@ -1,5 +1,7 @@
 # Introduction to Ansible
 
+## Important Skills to know
+
 ## Vim configurations 
 https://github.com/KristoferMar/Ansible-Guide/tree/master/vim_config
 ##  Installing Ansible
