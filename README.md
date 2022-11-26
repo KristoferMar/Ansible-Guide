@@ -24,6 +24,13 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_variables_and_
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_task_control
 
 ## Deploying Files to Managed Hosts
+- Jinja2 Templates 
+- file module
+- copy module
+- lineinfile module
+- blockinfile module
+
+https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_file_deployment
 
 ## Managing Complex Plays and Playbooks
 

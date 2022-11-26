@@ -34,3 +34,4 @@ https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_file_deploymen
 # Jinja2 Templates
 It's files that use variables to include static and dynamic values. Jinja templates are taken into use with the template module.
 ### Example
+https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_file_deployment/j2_templates
