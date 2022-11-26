@@ -29,3 +29,8 @@ https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_file_deploymen
 It's used for adding a block of text to an existing file
 ### Example
 https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_file_deployment/add_block.yml
+
+
+# Jinja2 Templates
+It's files that use variables to include static and dynamic values. Jinja templates are taken into use with the template module.
+### Example
