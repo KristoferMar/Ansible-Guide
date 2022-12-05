@@ -47,7 +47,7 @@ Install a collection from a URL using ansible-galxy
 
 Alternativly you can install and download collections from a configured yaml file as this one:
 
-link
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_roles/collections.yml
 
 Afterwards you can install all of it the following way
 <pre>
