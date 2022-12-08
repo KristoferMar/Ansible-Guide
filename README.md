@@ -36,6 +36,7 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_file_deploymen
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_complex_plays_and_playbooks
 
 ## Simplyfying playbooks with roles
+https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_roles
 
 ## Troubleshooting Ansible
 
