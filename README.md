@@ -39,6 +39,7 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_complex_plays_
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_roles
 
 ## Troubleshooting Ansible
+https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_troubleshooting
 
 ## Automating Linux Administration Tasks
 
