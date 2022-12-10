@@ -1,7 +1,7 @@
 # Automating Linux Administration Tasks
 
 ## Managing Software and Subscriptions
-Repositories
+Modules
 - yum_repository
 - rpm_key
 
@@ -20,4 +20,13 @@ Example of implementation to do verification
         key: http://materials.example.com/yum/repository/RPM-GPG-KEY-example
         state: present
 </pre>
+
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/repository_ensurance.yml
+
+
+## Managing Users and Authentication
+Modules
+- group
+- user
+- authorized_key
 
