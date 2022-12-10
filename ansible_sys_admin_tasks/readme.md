@@ -40,11 +40,27 @@ Modules
 - reboot
 
 Create crontab entry
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/boot_process_and_scheduled_processes/create_crontab_file.yml
 
 Remove crontab entry
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/boot_process_and_scheduled_processes/remove_cron_job.yml
 
 Create scheduled job
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/boot_process_and_scheduled_processes/schedule_at_task.yml
 
 Set boot target
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/boot_process_and_scheduled_processes/set_default_boot_target_graphical.yml
 
 Reboot target host
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/boot_process_and_scheduled_processes/reboot_hosts.yml
+
+
+## Managing Storage
+Modules
+- parted
+- lvg
+- lvol
+- filesystem
+- mount
+
+

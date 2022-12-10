@@ -45,6 +45,8 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_troubleshootin
 - yum_repository module
 - rpm_key module
 
+https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_sys_admin_tasks
+
 
 <br>
 <br>
