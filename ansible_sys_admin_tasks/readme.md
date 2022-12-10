@@ -63,4 +63,8 @@ Modules
 - filesystem
 - mount
 
+Storage playbook
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/manage_storage/storage.yml
 
+Related variables
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/manage_storage/storage_vars.yml
