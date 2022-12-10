@@ -30,3 +30,21 @@ Modules
 - user
 - authorized_key
 
+https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/users_and_authentication.yml
+
+
+## Managing the Boot Process and Scheduled Processes
+Modules
+- cron
+- at
+- reboot
+
+Create crontab entry
+
+Remove crontab entry
+
+Create scheduled job
+
+Set boot target
+
+Reboot target host
