@@ -42,7 +42,8 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_roles
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_troubleshooting
 
 ## Automating Linux Administration Tasks
-
+- yum_repository module
+- rpm_key module
 
 
 <br>
