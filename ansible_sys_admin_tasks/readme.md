@@ -68,3 +68,12 @@ https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_task
 
 Related variables
 https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_sys_admin_tasks/manage_storage/storage_vars.yml
+
+
+## Managing Network Configuration
+Modules
+- network_connections
+
+Notes
+- Best way to configure networking is by making use of the network role through the rhel-system-roles. 
+
