@@ -12,12 +12,6 @@ ansible serverb.lab.example.com -m setup
 
 
 # VIM
-## Customize vim to prettify yaml 
-Create a "$HOME/.vimrc" to personalize vim for your user. In that file you can putit.
-<pre>
-autocmd FileType yaml setlocal ai ts=2 sw=2 et nu
-autocmd FileType yaml colo desert
-</pre>
 
 ## See where lines end and begin
 See where lines begin and where they end
@@ -28,3 +22,9 @@ See where lines begin and where they end
 2. Press V (That's capital "V" : Shift + v )
 3. Move your cursor down to the bottom of the block of text/code to remove.
 4. Press d. 
+
+
+## Move multiple lines
+1. Go into Visual with "shift + Ctl + v"
+2. Mark all lines you want to move
+3. pree "<<" to go left and ">>" to go right
