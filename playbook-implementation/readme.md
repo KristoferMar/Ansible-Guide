@@ -37,7 +37,7 @@ Ad hoc is usefull for getting a feeling about the system you are working with
 <b>REMEMBER to make bash scritps executable with "chmod -x adhoc.sh"</b>
 
 examples
-https://github.com/KristoferMar/Ansible-Guide/blob/master/playbook-implementation/adhoc.md
+https://github.com/KristoferMar/Ansible-Guide/blob/master/playbook-implementation/adhock/adhoc.md
 
 How to create repository file
 https://github.com/KristoferMar/Ansible-Guide/blob/master/playbook-implementation/adhock/create_repository_file 
