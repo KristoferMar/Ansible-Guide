@@ -12,6 +12,8 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/installing-ansible
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_project_setup 
 
 ## Implementing an Ansible Playbook
+- AD-HOC Commands
+
 https://github.com/KristoferMar/Ansible-Guide/tree/master/playbook-implementation
 
 ## Managing variables and facts

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+/usr/local/bin/ansible all -b -m user -a "name=ali state=present"
+/usr/local/bin/ansible all -b -m file -a "path=/home/ali/.ssh state=directory owner=ali"
+/usr/local/bin/ansible all -b -m copy -a "src=/home/ali/.ssh/id_rsa.pub dest=/home/ali/.ssh/authorized_keys directory_mode=yes"
+/usr/local/bin/ansible all -b -m lineinfile -a "path=/etc/sudoers state=present line='ali ALL=(ALL) NOPASSWD: ALL'"

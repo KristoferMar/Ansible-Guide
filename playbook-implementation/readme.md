@@ -29,12 +29,17 @@ the ansible.cfg file located in each ansible directory can dictate stuff related
 
 example of such a file
 
+<br>
 
 ## Running Ad Hoc Commands
 Ad hoc is usefull for getting a feeling about the system you are working with
 
-examples
+<b>REMEMBER to make bash scritps executable with "chmod -x adhoc.sh"</b>
 
+examples
+https://github.com/KristoferMar/Ansible-Guide/blob/master/playbook-implementation/adhoc.md
+
+<br>
 
 ## Writing and running ansible playbooks
 This topic is pretty self explainatory... Just learn it
