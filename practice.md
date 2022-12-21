@@ -1,3 +1,5 @@
+# File content - variables & Facts
+
 Question: 1
 - Create a playbook, which can do as shown below:
 - Create a file on all the servers at this path /etc/motd.
@@ -338,3 +340,88 @@ Answer
       content: "[sample_exam]nserver_role=webserversn"
       dest: "/etc/ansible/facts.d/custom.fact"
 </pre>
+
+<br>
+
+# Packages Installation
+
+Question: 1
+
+- Create a yml file, which performs the below tasks on webservers(httpd).
+- Install the latest firewall and httpd.
+- Make sure that your httpd service is allowed through firewalls.
+- Create a file /var/www/html/index.html and put the entry “Server name is: hostname” so the hostname in the index.html should be replaced with the actual hostname from the system.
+
+For example, when we do curl http://node2 it should give me “Server name is: node2”.
+
+Answer
+
+<pre>
+---
+- hosts: webservers
+  become: yes
+  tasks:
+  - name: Install packages on webservers
+    yum:
+      name:
+        - httpd
+        - firewalld
+      state: latest
+  - name: Start firewalld and httpd on webservers
+    service:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
+    loop:
+      - httpd
+      - firewalld
+  - name: Opening Port through FW
+    firewalld:
+      service: http
+      permanent: yes
+      immediate: yes
+      state: enabled
+  - name: Creation of index.html
+    copy:
+      dest: /var/www/html/index.html
+      content: "Server name is: {{ ansible_facts['hostname'] }}"
+</pre>
+
+
+Question: 2
+
+- Create a playbook that performs the shown below activities:
+- The playbook will create a directory /webdir with the permission of 2755, and the owner is also webdir user.
+- You should have already configured apache to run your page from /var/www/html/index.html.
+- Create a link of your index.html in the /webdir, which should be accessible with the http://node1/webdir/index.html.
+- Your /var/www/webdir/index.hml should contain “I AM FROM WEBDIR”.
+
+Answer
+
+<pre>
+---
+- hosts: node2
+  become: yes
+  tasks:
+  - name: Create the webdir user
+    user:
+      name: webdir
+      state: present
+  - name: Create a directory
+    file:
+      mode: '2755'
+      path: /webdir
+      state: directory
+  - name: Create Symbolic Link
+    file:
+      src: /webdir
+      dest: /var/www/html/webdir
+      state: link
+  - name: Create index.html
+    copy:
+      dest: /var/www/html/webdir/index.html
+      content: "I AM FROM WEBDIR"
+</pre>
+
+
+# Users & Groups
