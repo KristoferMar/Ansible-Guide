@@ -39,6 +39,12 @@ Ad hoc is usefull for getting a feeling about the system you are working with
 examples
 https://github.com/KristoferMar/Ansible-Guide/blob/master/playbook-implementation/adhoc.md
 
+How to create repository file
+https://github.com/KristoferMar/Ansible-Guide/blob/master/playbook-implementation/adhock/create_repository_file 
+
+How to create user and ssh keys
+https://github.com/KristoferMar/Ansible-Guide/blob/master/playbook-implementation/adhock/create_use_and_ssh_key
+
 <br>
 
 ## Writing and running ansible playbooks
