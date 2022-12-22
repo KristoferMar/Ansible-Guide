@@ -425,3 +425,472 @@ Answer
 
 
 # Users & Groups
+
+Question: 1
+
+- Create a playbook that performs the shown below tasks:
+- Create a group on all the servers named “admin”.
+- Create a group on all the servers named “members”.
+
+Here is the file user_list.yml, In the exam, it will be provided.
+
+<pre>
+---
+users:
+  - username: eli
+    uid: 1201
+    password: abcdeXYZ
+    group: admin
+  - username: vincent
+    uid: 1202
+    password: cdefgXYZ
+    group: admin
+  - username: sandy
+    uid: 2201
+    password: edfegZBC
+    group: members
+  - username: patrick
+    uid: 2202
+    password: gjfezBCG
+    group: members
+</pre>
+
+
+- Users whose user ID starts with 1 should be created on servers in the webservers host group. The user password, shell, and UID should be used from the user_list.yml variable file.
+
+- Users whose user ID starts with 2 should be created on servers in the database host group. The user password, shell, and UID should be used from the user_list.yml variable.
+
+- Users uid starting from 1* should be the member of supplementary group admin.
+
+- Users uid starting from 2* should be the member of supplementary group members.
+
+- The shell should be set to /bin/bash for all users.
+
+- Account passwords should use the SHA512 hash format.
+
+- The SSH Key of your main ansible user should be uploaded. Dont generate the new SSH key just use your primary ansible user key, which you are using to connect from the controller node.
+
+Answer
+<pre>
+---
+- hosts: all
+  become: yes
+  vars_files:
+    - user_list.yml
+  tasks:
+  - name: Create the group named admin
+    group:
+      name: admin
+      state: present
+  - name: Create the group named admin
+    group:
+      name: members
+      state: present
+  - name: Create users on webservers whose user ID starts with 1
+    user:
+      name: "{{ item.username }}"
+      shell: /bin/bash
+      groups: "{{ item.group }}"
+      append: yes
+      uid: "{{ item.uid }}"
+      password: "{{ item.password | password_hash('sha512') }}"
+    with_items: "{{ users }}"
+    when:
+      - "'webservers' in group_names"
+      - "item.uid|string|first == '1'"
+  - name: Create users on database whose user ID starts with 2
+    user:
+      name: "{{ item.username }}"
+      shell: /bin/bash
+      groups: "{{ item.group }}"
+      append: yes
+      uid: "{{ item.uid }}"
+      password: "{{ item.password | password_hash('sha512') }}"
+    with_items: "{{ users }}"
+    when:
+      - "'database' in group_names"
+      - "item.uid|string|first == '2'"      
+  - name: Create SSH directory for users on webservers hosts
+    file:
+      path: "/home/{{ item.username }}/.ssh/"
+      state: directory
+      owner: "{{ item.username }}"
+      group: "{{ item.group}}"
+      mode: "0700"
+    with_items: "{{ users }}"
+    when:
+      - "'webservers' in group_names"
+      - "item.uid|string|first == '1'"
+  - name: Create SSH directory for users on database hosts
+    file:
+      path: "/home/{{ item.username }}/.ssh/"
+      state: directory
+      owner: "{{ item.username }}"
+      group: "{{ item.group }}"
+      mode: "0700"
+    with_items: "{{ users }}"
+    when:
+      - "'database' in group_names"
+      - "item.uid|string|first == '2'"
+  - name: Copy private SSH-key to users on the webserver hosts
+    copy:
+      src: /home/ali/.ssh/id_rsa.pub
+      dest: "/home/{{ item.username }}/.ssh/authorized_keys"
+      owner: "{{ item.username }}"
+      group: "{{ item.group }}"
+      mode: "0600"
+    with_items: "{{ users }}"
+    when:
+      - "'webservers' in group_names"
+      - "item.uid|string|first == '1'"
+  - name: Copy private SSH-key to users on the database hosts
+    copy:
+      src: /home/ali/.ssh/id_rsa.pub
+      dest: "/home/{{ item.username }}/.ssh/authorized_keys"
+      owner: "{{ item.username }}"
+      group: "{{ item.username }}"
+      mode: "0600"
+    with_items: "{{ users }}"
+    when:
+      - "'database' in group_names"
+      - "item.uid|string|first == '2'"
+</pre>
+
+
+
+# Roles
+
+## Question: 1
+
+- Use ansible Galaxy to download and Install the ansible-galaxy role named geerlingguy.nginx
+- The requirement file should install this role.
+- change the name to Nginx
+
+### Answer
+<pre>
+Step 1: Type "ansible-galaxy search nginx --author geerlingguy --platforms EL" to find the geeglinguy.nginx role
+Step 2: "ansible-galaxy info geerlingguy.nginx" to check more information about this role.
+Step 3: Create requirement.yml file as show below:
+</pre>
+
+<pre>
+ - src: geerlingguy.nginx
+  version: "2.7.0"
+  name: Nginx
+</pre>
+
+<pre>
+Step 4: Run this commad "ansible-galaxy install -r requirement.yml" Step 5: Run "ansible-galaxy list" to make sure that new role has been installed sucessfully. [Note] Prior to this task you need to have ansible-galaxy in your system. Make sure you have added the correct path of roles directory in your ansible.cfg file with roles_path =< Path of your ansible directory to have the roles >
+</pre>
+
+
+## Question: 2
+
+Create a role called apache and store it in your ansible directory “roles”. This role should satisfy the requirements below:
+
+- The httpd, mod_ssl and php packages are installed. Apache service is running and enabled on boot.
+- The firewall is configured to allow all incoming traffic on HTTP port TCP 80 and HTTPS port TCP 443.
+- Apache service should be restarted every time the file /var/www/html/index.html is modified.
+- A Jinja2 template file index.html.j2 is used to create the file /var/www/html/index.html with the following content:
+
+<pre>
+The address of the server is: IPV4ADDRESS
+</pre>
+
+IPV4ADDRESS is the IP address of the managed node.
+
+Create a playbook /home/automation/plays/apache.yml that uses the role and runs on hosts in the webservers host group.
+
+<br>
+
+### Answer
+
+<pre>
+Step 1: Create the empty role by "ansible-galaxy init apache" run this command in your roles directory, for it is /home/ali/ansible/roles
+Step 2: Create the handler file roles/apache/handlers/main.yml.
+</pre>
+
+<pre>
+---
+- name: restart_apache
+  service:
+    name: httpd
+    state: restarted
+    enabled: yes
+</pre>
+
+<pre>
+Step 3: Create the main task file roles/apache/tasks/main.yml
+</pre>
+
+<pre>
+---
+- name: Ensure the packages httpd, mod_ssl and php are installed
+  yum:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - httpd
+    - mod_ssl
+    - php
+- name: Ensure that the service httpd is enabled
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Ensure the firewall ports 80 and 443 are open
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+  loop:
+    - http
+    - https
+- name: Create index.html from template
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  notify: restart_apache
+...
+</pre>
+
+<pre>
+Step 4: Create a template file index.html.j2.
+</pre>
+
+<pre>
+The address of the server is: {{ ansible_facts['default_ipv4']['address']}}
+</pre>
+
+<pre>
+Step 5: Create a general apache file to run the role.
+</pre>
+
+<pre>
+---
+- hosts: webservers
+  become: yes
+  roles:
+    - apache
+</pre>
+
+<br>
+
+## Question: 3
+
+- Create a playbook of any name, and that playbook should do as shown below:
+- The playbook runs over all the managed hosts and uses the time sync role ( Red Hat system role)
+- This role should be able to change the time server to nl.pool.ntp.org.
+
+### Answer
+
+<pre>
+Step 1: you must have RHEL system roles installed and settled all the paths.
+Step 2: Copy the roles into your ansible directory or change the path of roles_path in ansible.cfg file.
+Step 3: Copy /usr/share/doc/rhel-sytem-roles/timesync/example-timesync-playbook.yml to home directory.
+Step 4: Edit the file has shome below:
+---
+- hosts: all
+  vars:
+    timesync_ntp_servers:
+    - hostname: nl.pool.ntp.org 
+      ibrust: yes
+  roles:
+    - rhel-system-roles.timesync
+
+
+Step 5: Run shown above yaml file to settle the ntp server.
+</pre>
+
+
+<br>
+
+
+# Disk Partitions and LVM
+
+## Question: 1-A
+
+- Create a playbook that should perform the following tasks:
+- Create a primary partition on /dev/sdb disk with the size of 2GB ( or anything according to your availability: just keep a couple of GBs for the next question).
+- Create a volume group named “RedHat”.
+- Create an lv named “exam”.
+- Formate the new lv as xfs.
+- Create a new directory named /mydir on it.
+- Mount /mydir so it can sustain the reboot.
+
+### Answer - Q1A
+
+<pre>
+---
+- hosts: database
+  become: yes
+  tasks:
+  - name: Create The Partition
+    parted:
+      device: "/dev/sdb"
+      number: 1
+      state: present
+      part_end: 1GiB
+  - name: Create VG
+    lvg:
+      vg: "RedHat"
+      pvs: "/dev/sdb1"
+  - name: Create LV
+    lvol:
+      lv: "exam"
+      vg: "RedHat"
+      size: 500m
+  - name: Formate
+    filesystem:
+      fstype: "xfs"
+      dev: "/dev/mapper/RedHat-exam"
+  - name: Mount the FS
+    mount:
+      path: "/mydir"
+      src: "/dev/mapper/RedHat-exam"
+      fstype: "xfs"
+      state: mounted
+</pre>
+
+## Question: 2-B
+
+- Create a playbook that performs the following tasks:
+- Use the remaining VG “RedHat” space and create a new LV named “ex294”.
+- Formate the new lv with ext4.
+- Create a folder named “/exam” and mount it so it can sustain the reboot.
+
+### Answer - Q1B
+
+<pre>
+---
+- hosts: database
+  become: yes
+  tasks:
+  - name: Create New LV On existing VG
+    lvol:
+      lv: "ex294"
+      vg: "RedHat"
+      size: 100%FREE
+  - name: Format new LV
+    filesystem:
+      fstype: "ext4"
+      dev: "/dev/mapper/RedHat-ex294"
+  - name: Mount new volume
+    mount:
+      path: "/exam"
+      src: "/dev/mapper/RedHat-ex294"
+      fstype: "ext4"
+      state: mounted
+</pre>
+
+
+<br>
+
+
+# Cron
+
+## Question: 1
+
+- Create a playbook that performs the following tasks:
+- Should create a crontab file /etc/cron.d/uptime.
+- The task must run by the user ( any user you wish in your server).
+- Every 5th minute from 9 to 5 on weekdays.
+- The task should run uptime and put an entry here: /home/ali/ansible/my_uptime_cron.txt.
+
+### Answer
+
+<pre>
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Crontab file
+    cron:
+      name: uptime command
+      user: ali
+      minute: "*/5"
+      hour: 9-5
+      days: 1-5
+      job: "uptime &amp;amp;amp;amp;amp;amp;amp;gt;&amp;amp;amp;amp;amp;amp;amp;gt; /home/ali/ansible/my_uptime_cron.txt"
+      cron_file: my_uptime_cron.txt
+      state: present
+</pre>
+
+## Question: 2
+
+- Create a playbook that performs the following tasks:
+- Create a root crontab record that runs every hour.
+- The cron job appends the file /var/log/time.log with the output from the date command.
+
+### Answer
+
+<pre>
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Create crontab-record on proxy hosts
+    cron:
+      name: "Append the output of 'date' to /var/log/time.log"
+      minute: "0"
+      job: "date &amp;amp;amp;amp;amp;amp;amp;gt;&amp;amp;amp;amp;amp;amp;amp;gt; /var/log/time.log"
+</pre>
+
+## Question 3 
+- Create a playbook, which should perform shown below tasks:
+- Runs a fstrim command every day at 8:30 AM and 4:30 PM.
+
+### Answer
+<pre>
+---
+- hosts: all
+  become: 
+  tasks:
+  - name: Run Fstrim
+    cron:
+      name: "Run FSTRIM"
+      minute: "30"
+      hour: "8,4"
+      job: "fstrim -a"
+</pre>
+
+
+## Question: 4
+- Create a playbook, which should perform shown below tasks:
+- Remove the corn job which you created in Q3.
+
+### Answer
+<pre>
+---
+- hosts: all
+  become: 
+  tasks:
+  - name: Run Fstrim
+    cron:
+      name: "Run FSTRIM"
+      state: absent
+</pre>
+
+
+## Question: 5
+- Create a yaml file, which should perform shown below tasks:
+- Run a backup of /etc/passwd, /etc/group & /etc/shadow
+
+### Answer
+<pre>
+---
+- hosts: all
+  become: yes
+  tasks: 
+  - name: Backup user data
+    cron:
+      name: Backup Users
+      hour: 5
+      minute: 30
+      weekday: 1-5
+      user: root
+      job: 'tar -czf /root/user.tgz /etc/passwd /etc/shadow'
+      cron_file: user_backup
+</pre>
