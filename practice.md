@@ -1,3 +1,87 @@
+# Ansible Installation and Configuration
+
+## Question 1
+Creating inventory files is the most critical aspect of an ansible environment, and this exam question is imminent.
+
+- Install ansible in controller node.
+- Group creation for your inventory file should be as shown below:
+
+<pre>
+node1 should be the member of proxy group
+node2 and node3 should be the member of webservers group.
+node4 should be the member of database group.
+Create a new group called “prod” and put your webservers group in that new group.
+</pre>
+
+### Answer
+To install Ansible, you can follow this link seimaxim.
+You can create an inventory file like shown below:
+<pre>
+[proxy] 
+node1 
+
+[webservers] 
+node2 
+node3 
+
+[database] 
+node4 
+
+[prod:children] 
+webservers
+</pre>
+
+
+<br>
+
+
+# AD-HOC Commands
+## Question:1
+
+- Create repository file for MariaDB server using the ad-hoc command with the following commands:
+- name: MariaDB
+- description: Repository MariaDB-Server
+- base URL: http://yum.mariadb.org/10.5/centos8-amd64
+- GPGKEY: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+- GPGCHECK: yes
+- enabled: active
+
+*You can even create a playbook instead of a shell script.
+
+### Answer
+
+<pre>
+ansible database -m yum_repository -a "name=mariadb description='Repository MariaDB-Server' baseurl='http://yum.mariadb.org/10.5/centos8-amd64' gpgkey='https://yum.mariadb.org/RPM-GPG-KEY-MariaDB' gpgcheck=yes enabled=yes" -b 
+</pre>
+You can create a file repo.sh and put the above-mentioned query into that file, make it executable, and run it.
+
+
+## Question:2
+
+This question prepares your environment so your ansible user can perform the tasks.
+
+- Generate the script which creates the user named “ali” and copies the SSH public key of user “ansible”.
+- User ali, which you have created, should be able to be a SUDO.
+
+[Note] Your environment of 4 nodes and one controller already has root access to all the nodes. so manually, you are generating your ssh-key of user ali on the controller node, which you will copy on all the nodes. 
+
+### Answer
+Create a file “vim adhoc.sh”.
+<pre>
+#!/bin/bash
+
+/usr/local/bin/ansible all -b -m user -a "name=ali state=present"
+/usr/local/bin/ansible all -b -m file -a "path=/home/ali/.ssh state=directory owner=ali"
+/usr/local/bin/ansible all -b -m copy -a "src=/home/ali/.ssh/id_rsa.pub dest=/home/ali/.ssh/authorized_keys directory_mode=yes"
+/usr/local/bin/ansible all -b -m lineinfile -a "path=/etc/sudoers state=present line='ali ALL=(ALL) NOPASSWD: ALL'"
+</pre>
+
+once you exit from adhoc.sh file, make it executable with ” chmod +x adhoc.sh”.
+
+
+<br>
+
+
 # File content - variables & Facts
 
 Question: 1
