@@ -1,5 +1,6 @@
 # Important to know
 
+# Ansible facts
 ## Get facts from remote host
 <pre>
 ansible -m setup -i inventory.yml all 
