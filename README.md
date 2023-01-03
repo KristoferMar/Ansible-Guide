@@ -36,6 +36,8 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_task_control
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_file_deployment
 
 ## Managing Complex Plays and Playbooks
+- import_tasks module
+
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_complex_plays_and_playbooks
 
 ## Simplyfying playbooks with roles
