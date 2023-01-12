@@ -48,6 +48,8 @@ webservers
 
 *You can even create a playbook instead of a shell script.
 
+"-b" stands for "become" and is used to become root for instance
+
 ### Answer
 
 <pre>
