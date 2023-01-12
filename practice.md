@@ -110,7 +110,7 @@ Question: 1
 Question: 2
 - Create a playbook, which can do as shown below:
 - Create a file on all the servers at this path /etc/motd.
-- The file contains  “MY SERVER: <Server Name> “.
+- The file contains  “MY SERVER: 'Server Name' “.
 
 you replace the server Name with the actual HOSTNAME of the server.
 
