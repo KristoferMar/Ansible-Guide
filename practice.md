@@ -126,6 +126,8 @@ you replace the server Name with the actual HOSTNAME of the server.
       content: "MY SERVER: {{ ansible_facts['hostname']}}"
 </pre>
 
+notes:
+- /etc/motd is what gets displayed by login after a successful login but just before it executes the login shell. It stands for "message of the day". 
 
 <br>
 
