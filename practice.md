@@ -923,7 +923,7 @@ Step 5: Run shown above yaml file to settle the ntp server.
     cron:
       name: "Append the output of 'date' to /var/log/time.log"
       minute: "0"
-      job: "date &amp;amp;amp;amp;amp;amp;amp;gt;&amp;amp;amp;amp;amp;amp;amp;gt; /var/log/time.log"
+      job: "date >> /var/log/time.log"
 </pre>
 
 ## Question 3 
