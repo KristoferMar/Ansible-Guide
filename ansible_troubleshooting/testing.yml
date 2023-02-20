@@ -1,0 +1,7 @@
+---
+- name: Testing debugger and facts
+  hosts: localhost
+  tasks:
+    - name: Testing
+      debug:
+        msg: "Hostname: {{ ansible_hostname }} IP: {{ ansible_facts['default_ipv4'] }}"

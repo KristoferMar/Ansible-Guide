@@ -11,6 +11,9 @@ touch ansible.cfg
 example
 https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_project_setup/ansible.cfg
 
+<br>
+<br>
+
 ## inventory
 Defines a collection of hosts that Ansible will manage. Hosts can be assigned to groups, which can have sub-groups which can be managed collectively. The inventory can also set variables that apply to the hosts and groups that it defines.
 
@@ -25,6 +28,19 @@ Check and verify all hosts
 <pre>
 [user@workstation ~]$ ansible all --list-hosts
 </pre>
+
+### Groups
+Groups in a inventory files are stored in the following format "[dev]". A group can be accesed as a variable directly from within a playbook. Example.
+<pre>
+- name:
+    copy:
+        content: "Development"
+        dest: /etc/issue
+    when: inventory_hostname in groups['dev']
+</pre>
+
+<br>
+<br>
 
 ## Vault
 A vault is used to encrypt and decrypt any structured data file used by Ansible. This way you can safely store passwords and other kinds of sensable data and use them in your playbooks. 
@@ -59,3 +75,4 @@ Playbooks are used to run multiple complex tasks against a set of hosts in an ea
 
 Playbook example
 https://github.com/KristoferMar/Ansible-Guide/blob/master/ansible_project_setup/playbook.yml
+

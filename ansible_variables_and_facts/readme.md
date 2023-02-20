@@ -63,3 +63,61 @@ enabled = true
         src: "{{ facts_file }}"
         dest: "{{ remote_dir }}"
 </pre>
+
+
+# Facts
+When written in playbooks, ansible facts have the following layout
+
+Task to display ip adress
+<pre>
+- name: Get node ip adress
+  debug:
+    msg: "{{ ansible_facts['default_ipv4']['address'] }}
+</pre>
+
+task to display FQDN
+<pre>
+- name: Get fully qualified domain name
+  debug:
+    msg: "{{ ansible_facts['fqdn'] }}
+</pre>
+
+Task to display hostname
+<pre>
+- name: Get hostname
+  debug:
+    msg: "{{ ansible_facts['hostname']}
+</pre>
+
+
+## when used in a 'when'
+When ansible facts are used inside a when flag then we dont have to specify "ansible_facts['something']", we can just use the facts directly with their full name eg.
+
+<pre>
+- fail:
+    msg: Fail when criterias are not met
+  when: >
+    ansible_memtotal_mb > min_ram_mb
+</pre>
+
+# built-in variables
+Importnat built-in variables
+- inventory_hostname
+- ansible_hostname
+  - takes the hostname of the remote machine from the facts collected during the gather_facts section.
+<pre>
+ansible prod -m debug -a "msg={{ inventory_hostname }}"
+</pre>
+
+Example of real usecase
+<pre>
+---
+- name:
+  hosts: all
+  tasks:
+    - name:
+      copy:
+        content: "Development"
+        dest: /etc/issue
+      when: inventory_hostname in groups['dev']
+</pre>

@@ -5,11 +5,14 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/important_to_know
 
 ## Vim configurations 
 https://github.com/KristoferMar/Ansible-Guide/tree/master/vim_config
+
 ##  Installing Ansible
 https://github.com/KristoferMar/Ansible-Guide/tree/master/installing-ansible
 
 ## Setup Ansible project
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_project_setup 
+
+
 
 ## Implementing an Ansible Playbook
 - AD-HOC Commands
