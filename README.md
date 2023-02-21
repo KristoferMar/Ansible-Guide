@@ -11,8 +11,8 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/installing-ansible
 
 ## Setup Ansible project
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_project_setup 
-
-
+- ansible.cfg
+- inventory
 
 ## Implementing an Ansible Playbook
 - AD-HOC Commands
@@ -20,11 +20,10 @@ https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_project_setup
 https://github.com/KristoferMar/Ansible-Guide/tree/master/playbook-implementation
 
 ## Managing variables and facts
+https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_variables_and_facts 
 - Variables
 - Facts
 - Secrets
-
-https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_variables_and_facts
 
 ## Implementing Task Control
 https://github.com/KristoferMar/Ansible-Guide/tree/master/ansible_task_control

@@ -2,7 +2,7 @@
 
 
 ## Using variables and facts
-Remember to put the variables and facts in quotes
+Remember to put the variables and facts in quotes when written directly in a playbook.
 <pre>
   tasks:
     - name: Required packages are installed and up to date
@@ -21,6 +21,19 @@ How to edit secrets
 <pre>
 [kris@workstation data-secret]$ ansible-vault edit secret.yml
 Vault password: thePasswordForVault
+</pre>
+
+## Variables
+Variables can be defined in multiple places on multiple levels.
+- The keyword used to define variables is "vars"
+example
+<pre>
+---
+- name: Install and start httpd
+  import_tasks: install_and_enable.yml
+  vars:
+    package: httpd
+    service: httpd
 </pre>
 
 
@@ -89,6 +102,19 @@ Task to display hostname
     msg: "{{ ansible_facts['hostname']}
 </pre>
 
+Task to display total memory ammount
+<pre>
+- name: Get total memory in mb
+  debug:
+    msg: "{{ ansible_facts['memtotal_mb']}
+</pre>
+
+Task to display processor count
+<pre>
+- name: Get total processor count
+  debug:
+    msg: "{{ ansible_facts['processor_count']}
+</pre>
 
 ## when used in a 'when'
 When ansible facts are used inside a when flag then we dont have to specify "ansible_facts['something']", we can just use the facts directly with their full name eg.
